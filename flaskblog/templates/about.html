@@ -1,0 +1,227 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="about-page">
+    <!-- Hero Section -->
+    <section class="about-hero py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Our Story</h1>
+                    <p class="lead">FlaskBlog was born from a simple idea: to create a platform where authentic voices can be heard and meaningful conversations can flourish.</p>
+                    <p>Founded in 2023, we've grown into a community of passionate writers and curious readers who believe in the power of shared knowledge.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-illustration p-4">
+                        <div class="d-flex justify-content-center">
+                            <div class="circle-bg bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 300px; height: 300px;">
+                                <i class="bi bi-pencil-square text-white" style="font-size: 5rem;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Our Mission</h2>
+                <div class="divider mx-auto"></div>
+                <p class="lead mt-3">To empower voices and cultivate knowledge-sharing</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="mission-card p-4 h-100 shadow-sm">
+                        <div class="mission-icon mb-3">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h3>Spark Ideas</h3>
+                        <p>We create a space where creative thoughts flourish and innovative ideas find their audience.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mission-card p-4 h-100 shadow-sm">
+                        <div class="mission-icon mb-3">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h3>Build Community</h3>
+                        <p>Connecting like-minded individuals who share a passion for learning and growth.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mission-card p-4 h-100 shadow-sm">
+                        <div class="mission-icon mb-3">
+                            <i class="bi bi-journal-bookmark"></i>
+                        </div>
+                        <h3>Share Knowledge</h3>
+                        <p>Democratizing information by making quality content accessible to everyone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Our Core Values</h2>
+                <div class="divider mx-auto"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="value-card p-4 h-100">
+                        <h3 class="d-flex align-items-center">
+                            <i class="bi bi-chat-heart text-primary me-3"></i>
+                            Authenticity
+                        </h3>
+                        <p>We believe in genuine voices and honest storytelling. Every post comes from a place of real experience and perspective.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="value-card p-4 h-100">
+                        <h3 class="d-flex align-items-center">
+                            <i class="bi bi-shield-check text-primary me-3"></i>
+                            Quality
+                        </h3>
+                        <p>Content that informs, inspires, and adds value. We prioritize substance over sensationalism.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="value-card p-4 h-100">
+                        <h3 class="d-flex align-items-center">
+                            <i class="bi bi-arrows-angle-expand text-primary me-3"></i>
+                            Inclusivity
+                        </h3>
+                        <p>Diverse perspectives enrich our community. We welcome voices from all backgrounds and experiences.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="value-card p-4 h-100">
+                        <h3 class="d-flex align-items-center">
+                            <i class="bi bi-arrow-repeat text-primary me-3"></i>
+                            Continuous Growth
+                        </h3>
+                        <p>We're committed to evolving with our community, always seeking ways to improve and better serve our readers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5">
+        <div class="container text-center py-4">
+            <h2 class="fw-bold mb-4">Join Our Community</h2>
+            <p class="lead mb-4">Share your knowledge or find inspiration from others</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{{ url_for('users.register') }}" class="btn btn-primary btn-lg px-4">
+                    <i class="bi bi-pencil me-2"></i> Start Writing
+                </a>
+                <a href="{{ url_for('main.home') }}" class="btn btn-outline-primary btn-lg px-4">
+                    <i class="bi bi-book me-2"></i> Explore Posts
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Message -->
+    <section class="final-message py-5 bg-light">
+        <div class="container text-center">
+            <div class="mx-auto" style="max-width: 700px;">
+                <i class="bi bi-quote display-1 text-primary opacity-25"></i>
+                <p class="fs-4 fst-italic">"Words have power. At FlaskBlog, we believe in using that power to enlighten, connect, and inspire. Every post is a new opportunity to learn something valuable or see the world from a different perspective."</p>
+                <p class="mt-4">- The FlaskBlog Team</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+.about-hero {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.mission-icon {
+    font-size: 2rem;
+    color: #4361ee;
+}
+
+.mission-card {
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    border: none;
+    background: white;
+    height: 100%;
+}
+
+.mission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.divider {
+    width: 80px;
+    height: 4px;
+    background: #4361ee;
+    margin: 1rem auto;
+}
+
+.value-card {
+    background: white;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    height: 100%;
+}
+
+.value-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.cta-section {
+    background: linear-gradient(135deg, #4361ee 0%, #3a56d4 100%);
+    color: white;
+}
+
+.cta-section .btn-outline-primary {
+    color: white;
+    border-color: white;
+}
+
+.cta-section .btn-outline-primary:hover {
+    background: white;
+    color: #4361ee;
+}
+
+.final-message {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.about-illustration {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.circle-bg {
+    animation: pulse 4s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+    70% { box-shadow: 0 0 0 25px rgba(67, 97, 238, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+}
+</style>
+{% endblock content %}

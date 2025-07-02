@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <!-- Error Illustration -->
+            <div class="error-illustration mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="#4361ee" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+            </div>
+            
+            <!-- Error Content -->
+            <h1 class="display-4 fw-bold mb-3 text-primary">403 - Access Forbidden</h1>
+            <p class="lead mb-4">You don't have permission to access this resource</p>
+            
+            <div class="alert alert-primary border-primary bg-light mb-5 mx-auto" style="max-width: 600px;">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-shield-exclamation display-4 text-primary me-3"></i>
+                    <div>
+                        <h5 class="alert-heading">Why am I seeing this?</h5>
+                        <p class="mb-0">You may need to sign in with a different account or request permission from the resource owner.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-center gap-3 flex-wrap mb-5">
+                <a href="{{ url_for('main.home') }}" class="btn btn-primary btn-lg px-4 py-3">
+                    <i class="bi bi-house-door me-2"></i> Return Home
+                </a>
+                <a href="{{ url_for('users.login') }}" class="btn btn-outline-primary btn-lg px-4 py-3">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Sign In
+                </a>
+                <a href="{{ url_for('users.register') }}" class="btn btn-light btn-lg px-4 py-3">
+                    <i class="bi bi-person-plus me-2"></i> Create Account
+                </a>
+            </div>
+            
+            <!-- Additional Help -->
+            <div class="card border-0 shadow-sm mx-auto" style="max-width: 600px;">
+                <div class="card-body">
+                    <h5 class="mb-3"><i class="bi bi-question-circle text-primary me-2"></i>Need Help?</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center border-0">
+                            <i class="bi bi-envelope text-primary me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Contact Support</h6>
+                                <p class="mb-0 text-muted">support@flaskblog.com</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center border-0">
+                            <i class="bi bi-chat-left-text text-primary me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Community Forum</h6>
+                                <p class="mb-0 text-muted">Get help from our community</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-illustration {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.display-4 {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.alert {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    background: #4361ee;
+    border-color: #4361ee;
+}
+
+.btn-primary:hover {
+    background: #3a56d4;
+    border-color: #3a56d4;
+}
+
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.list-group-item {
+    padding: 1.25rem 0;
+}
+</style>
+
+{% endblock content %}

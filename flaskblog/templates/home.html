@@ -1,0 +1,246 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="post-feed">
+    {% for post in posts.items %}
+    <div class="post-card">
+        <div class="post-header">
+            <div class="author-info">
+                <img class="author-avatar" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="{{ post.author.username }}">
+                <div>
+                    <div class="author-name">{{ post.author.username }}</div>
+                    <div class="post-date">{{ post.date_posted.strftime('%b %d, %Y') }}</div>
+                </div>
+            </div>
+            <div class="post-badge">New</div>
+        </div>
+        
+        <h2 class="post-title">{{ post.title }}</h2>
+        
+        <p class="post-excerpt">{{ post.content|truncate(150) }}</p>
+        
+        <div class="post-footer">
+            <a href="{{ url_for('posts.post', post_id=post.id) }}" class="read-more">
+                Read More <i class="bi bi-arrow-right"></i>
+            </a>
+            <div class="post-actions">
+                <button class="icon-btn"><i class="bi bi-heart"></i></button>
+                <button class="icon-btn"><i class="bi bi-bookmark"></i></button>
+                <button class="icon-btn"><i class="bi bi-share"></i></button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Enhanced Pagination with Prev/Next -->
+<div class="pagination">
+    <!-- Previous Button -->
+    <a href="{{ url_for(request.endpoint, page=posts.prev_num) if posts.has_prev else '#' }}" 
+       class="pagination-btn prev-next-btn {% if not posts.has_prev %}disabled{% endif %}">
+        <i class="bi bi-chevron-left"></i> Prev
+    </a>
+    
+    <!-- Page Numbers -->
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if posts.page == page_num %}
+                <a href="{{ url_for(request.endpoint, page=page_num) }}" class="pagination-btn active">{{ page_num }}</a>
+            {% else %}
+                <a href="{{ url_for(request.endpoint, page=page_num) }}" class="pagination-btn">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+            <span class="pagination-ellipsis">...</span>
+        {% endif %}
+    {% endfor %}
+    
+    <!-- Next Button -->
+    <a href="{{ url_for(request.endpoint, page=posts.next_num) if posts.has_next else '#' }}" 
+       class="pagination-btn prev-next-btn {% if not posts.has_next %}disabled{% endif %}">
+        Next <i class="bi bi-chevron-right"></i>
+    </a>
+</div>
+
+<style>
+    /* Post Card Styles */
+    .post-card {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #f0f0f0;
+    }
+
+    .post-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .author-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .author-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #f0f0f0;
+    }
+
+    .author-name {
+        font-weight: 600;
+        color: #333;
+        font-size: 15px;
+    }
+
+    .post-date {
+        font-size: 13px;
+        color: #888;
+    }
+
+    .post-badge {
+        background: #4361ee;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .post-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+
+    .post-excerpt {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+
+    .post-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #f0f0f0;
+        padding-top: 16px;
+    }
+
+    .read-more {
+        color: #4361ee;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: color 0.2s ease;
+    }
+
+    .read-more:hover {
+        color: #3a56d4;
+        text-decoration: underline;
+    }
+
+    .post-actions {
+        display: flex;
+        gap: 12px;
+    }
+
+    .icon-btn {
+        background: none;
+        border: none;
+        color: #888;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        padding: 4px;
+    }
+
+    .icon-btn:hover {
+        color: #4361ee;
+    }
+
+    /* Enhanced Pagination Styles */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 32px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+
+    .pagination-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 36px;
+        padding: 0 8px;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        color: #444;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        border: 1px solid #e0e0e0;
+    }
+
+    .pagination-btn:hover:not(.disabled) {
+        background-color: #eaeaea;
+        transform: translateY(-1px);
+    }
+
+    .pagination-btn.active {
+        background-color: #4361ee;
+        color: white;
+        border-color: #4361ee;
+        box-shadow: 0 2px 6px rgba(67, 97, 238, 0.3);
+    }
+
+    .pagination-ellipsis {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 36px;
+        color: #888;
+        font-size: 14px;
+    }
+
+    /* Prev/Next Button Styles */
+    .prev-next-btn {
+        min-width: 80px;
+        padding: 0 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .prev-next-btn.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    /* Make sure you have Bootstrap Icons loaded */
+</style>
+{% endblock content %}

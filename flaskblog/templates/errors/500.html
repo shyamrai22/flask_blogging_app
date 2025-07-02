@@ -1,0 +1,214 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <!-- Animated Server Illustration -->
+            <div class="error-illustration mb-4">
+                <div class="position-relative d-inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="#4361ee" viewBox="0 0 24 24" class="error-icon">
+                        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/>
+                    </svg>
+                    <div class="pulse-animation pulse-1"></div>
+                    <div class="pulse-animation pulse-2"></div>
+                    <div class="pulse-animation pulse-3"></div>
+                </div>
+            </div>
+            
+            <!-- Error Content -->
+            <h1 class="display-4 fw-bold mb-3 text-primary">500 - Server Error</h1>
+            <p class="lead mb-4">We're experiencing some technical difficulties on our end</p>
+            
+            <!-- Status Card -->
+            <div class="alert alert-warning border-warning bg-light mb-5 mx-auto" style="max-width: 600px;">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-exclamation-triangle display-4 text-warning me-3"></i>
+                    <div>
+                        <h5 class="alert-heading">What happened?</h5>
+                        <p class="mb-0">Our servers encountered an unexpected condition that prevented it from fulfilling your request.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-center gap-3 flex-wrap mb-5">
+                <a href="{{ url_for('main.home') }}" class="btn btn-primary btn-lg px-4 py-3">
+                    <i class="bi bi-house-door me-2"></i> Return Home
+                </a>
+                <a href="#" class="btn btn-outline-primary btn-lg px-4 py-3" id="refresh-button">
+                    <i class="bi bi-arrow-clockwise me-2"></i> Try Again
+                </a>
+                <a href="#" class="btn btn-light btn-lg px-4 py-3">
+                    <i class="bi bi-question-circle me-2"></i> Support
+                </a>
+            </div>
+            
+            <!-- System Status -->
+            <div class="card border-0 shadow-sm mx-auto mb-4" style="max-width: 600px;">
+                <div class="card-body">
+                    <h5 class="mb-4"><i class="bi bi-server text-primary me-2"></i>System Status</h5>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Application Server</span>
+                            </div>
+                            <span class="badge bg-success">Operational</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                                <span>Database</span>
+                            </div>
+                            <span class="badge bg-warning">Degraded</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Authentication Service</span>
+                            </div>
+                            <span class="badge bg-success">Operational</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technical Info -->
+            <div class="text-muted small">
+                <p class="mb-1">Error ID: #{{ range(10000, 99999) | random }}</p>
+                <p>Timestamp: {{ now.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-illustration {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.error-icon {
+    z-index: 2;
+    position: relative;
+    animation: shake 1.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.pulse-animation {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(67, 97, 238, 0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.pulse-1 {
+    width: 220px;
+    height: 220px;
+    animation: pulse 2s infinite;
+}
+
+.pulse-2 {
+    width: 260px;
+    height: 260px;
+    animation: pulse 2s infinite 0.5s;
+}
+
+.pulse-3 {
+    width: 300px;
+    height: 300px;
+    animation: pulse 2s infinite 1s;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.1; }
+    100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+}
+
+.display-4 {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.alert {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    background: #4361ee;
+    border-color: #4361ee;
+}
+
+.btn-primary:hover {
+    background: #3a56d4;
+    border-color: #3a56d4;
+}
+
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.badge {
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+</style>
+
+<script>
+// Refresh button functionality
+document.getElementById('refresh-button').addEventListener('click', function(e) {
+    e.preventDefault();
+    // Show loading state
+    const icon = this.querySelector('i');
+    icon.classList.remove('bi-arrow-clockwise');
+    icon.classList.add('bi-arrow-repeat', 'animate-spin');
+    
+    this.querySelector('span').textContent = ' Refreshing';
+    
+    // Refresh the page after a brief delay
+    setTimeout(() => {
+        window.location.reload();
+    }, 1500);
+});
+
+// Add spin animation
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+`;
+document.head.appendChild(style);
+</script>
+
+{% endblock content %}

@@ -1,0 +1,132 @@
+:root {
+    --bs-body-font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --bs-primary-rgb: 79, 70, 229;
+    --bs-link-color: rgb(var(--bs-primary-rgb));
+    --bs-link-hover-color: rgba(var(--bs-primary-rgb), 0.8);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Brand name animation */
+.navbar-brand .brand-name {
+    position: relative;
+}
+
+.navbar-brand .brand-name::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.navbar-brand:hover .brand-name::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Card hover effects */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.back-to-top.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Flash message animation */
+.alert {
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dark mode styles */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #1a1a1a;
+    --bs-body-color: #f8f9fa;
+    --bs-secondary-bg: #2d2d2d;
+    --bs-tertiary-bg: #3d3d3d;
+    
+    .card {
+        background-color: var(--bs-tertiary-bg);
+    }
+    
+    .text-muted {
+        color: #adb5bd !important;
+    }
+}
+
+/* Responsive tweaks */
+@media (max-width: 992px) {
+    .sticky-lg-top {
+        position: static !important;
+    }
+}
+
+/* Custom button styles */
+.btn-primary {
+    --bs-btn-bg: rgb(var(--bs-primary-rgb));
+    --bs-btn-border-color: rgb(var(--bs-primary-rgb));
+    --bs-btn-hover-bg: rgba(var(--bs-primary-rgb), 0.9);
+    --bs-btn-hover-border-color: rgba(var(--bs-primary-rgb), 0.9);
+    --bs-btn-active-bg: rgba(var(--bs-primary-rgb), 0.8);
+    --bs-btn-active-border-color: rgba(var(--bs-primary-rgb), 0.8);
+}
+
+/* Form input focus styles */
+.form-control:focus {
+    border-color: rgba(var(--bs-primary-rgb), 0.5);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Animation for dropdown menus */
+.dropdown-menu {
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

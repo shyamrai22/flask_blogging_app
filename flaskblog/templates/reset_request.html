@@ -1,0 +1,149 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
+                <!-- Card Header with Gradient -->
+                <div class="card-header bg-primary bg-gradient text-white py-4">
+                    <div class="text-center">
+                        <i class="bi bi-key display-4 mb-3"></i>
+                        <h2 class="h1 mb-0">Reset Your Password</h2>
+                        <p class="mb-0">Enter your email to receive reset instructions</p>
+                    </div>
+                </div>
+                
+                <!-- Card Body with Form -->
+                <div class="card-body p-4 p-md-5">
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                        
+                        <!-- Email Field -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-envelope text-primary"></i>
+                                </span>
+                                {% if form.email.errors %}
+                                    {{ form.email(class="form-control form-control-lg is-invalid py-3") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.email(class="form-control form-control-lg py-3", placeholder="you@example.com") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-text mt-2">We'll send a password reset link to this email</div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="d-grid mb-4">
+                            {{ form.submit(class="btn btn-primary btn-lg py-3 fw-bold") }}
+                        </div>
+                    </form>
+                    
+                    <!-- Additional Information -->
+                    <div class="alert alert-info">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-info-circle me-3 fs-4"></i>
+                            <div>
+                                <h5 class="alert-heading">Didn't receive the email?</h5>
+                                <ul class="mb-0">
+                                    <li>Check your spam or junk folder</li>
+                                    <li>Make sure you entered the correct email address</li>
+                                    <li>Wait a few minutes and try again</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card Footer -->
+                <div class="card-footer bg-light py-3 text-center">
+                    <small class="text-muted">
+                        Remember your password? 
+                        <a href="{{ url_for('users.login') }}" class="text-decoration-none fw-bold">
+                            Sign in
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    padding: 2.5rem 1rem;
+    background: linear-gradient(135deg, #4361ee 0%, #3a56d4 100%);
+    border: none;
+}
+
+.card-body {
+    padding: 2.5rem;
+}
+
+.form-control {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    height: auto;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #4361ee;
+    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+}
+
+.input-group-text {
+    border-radius: 8px 0 0 8px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-right: none;
+}
+
+.btn-primary {
+    background: #4361ee;
+    border-color: #4361ee;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #3a56d4;
+    border-color: #3a56d4;
+    transform: translateY(-2px);
+}
+
+.alert-info {
+    background-color: #e7f3ff;
+    border-color: #c1dcfc;
+    color: #0c63e4;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.5rem;
+    }
+}
+</style>
+
+{% endblock content %}
